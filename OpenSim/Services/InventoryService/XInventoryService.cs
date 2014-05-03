@@ -276,11 +276,6 @@ namespace OpenSim.Services.InventoryService
             return ret;
         }
 
-        public virtual int GetAssetPermissions(UUID principalID, UUID assetID)
-        {
-            return m_Database.GetAssetPermissions(principalID, assetID);
-        }
-
         public virtual InventoryFolderBase GetFolder(InventoryFolderBase folder)
         {
             XInventoryFolder[] folders = m_Database.GetFolders(

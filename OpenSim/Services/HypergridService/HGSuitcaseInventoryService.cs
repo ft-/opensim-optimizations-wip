@@ -402,10 +402,6 @@ namespace OpenSim.Services.HypergridService
         //{
         //}
 
-        //public int GetAssetPermissions(UUID principalID, UUID assetID)
-        //{
-        //}
-
         #region Auxiliary functions
 
         private XInventoryFolder GetCurrentOutfitXFolder(UUID userID)

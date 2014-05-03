@@ -208,11 +208,6 @@ namespace OpenSim.Region.CoreModules.ServiceConnectorsOut.Inventory
             return new List<InventoryItemBase>();
         }
 
-        public int GetAssetPermissions(UUID userID, UUID assetID)
-        {
-            return m_RemoteConnector.GetAssetPermissions(userID, assetID);
-        }
-
         public InventoryFolderBase GetFolder(InventoryFolderBase folder)
         {
             //m_log.DebugFormat("[XINVENTORY CONNECTOR]: GetFolder {0}", folder.ID);

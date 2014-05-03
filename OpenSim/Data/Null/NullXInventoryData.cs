@@ -26,62 +26,55 @@
  */
 
 using OpenMetaverse;
+using OpenSim.Framework;
+using System.Collections.Generic;
 
-namespace OpenSim.Data
+namespace OpenSim.Data.Null
 {
-    public class XInventoryFolder
+    /// <summary>
+    /// This class is completely null.
+    /// </summary>
+    public class XNullInventoryData : IXInventoryData
     {
-        public string folderName;
-        public int type;
-        public int version;
-        public UUID folderID;
-        public UUID agentID;
-        public UUID parentFolderID;
+        public string Version { get { return "1.0.0.0"; } }
 
-        public XInventoryFolder Clone()
+        public void Initialise()
         {
-            return (XInventoryFolder)MemberwiseClone();
         }
-    }
 
-    public class XInventoryItem
-    {
-        public UUID assetID;
-        public int assetType;
-        public string inventoryName;
-        public string inventoryDescription;
-        public int inventoryNextPermissions;
-        public int inventoryCurrentPermissions;
-        public int invType;
-        public string creatorID;
-        public int inventoryBasePermissions;
-        public int inventoryEveryOnePermissions;
-        public int salePrice;
-        public int saleType;
-        public int creationDate;
-        public UUID groupID;
-        public int groupOwned;
-        public int flags;
-        public UUID inventoryID;
-        public UUID avatarID;
-        public UUID parentFolderID;
-        public int inventoryGroupPermissions;
-
-        public XInventoryItem Clone()
+        public void Dispose()
         {
-            return (XInventoryItem)MemberwiseClone();
+            // Do nothing.
         }
-    }
 
-    public interface IXInventoryData
-    {
-        XInventoryFolder[] GetFolders(string[] fields, string[] vals);
+        public string Name
+        {
+            get { return "Null Inventory Data Interface"; }
+        }
 
-        XInventoryItem[] GetItems(string[] fields, string[] vals);
+        public void Initialise(string connect)
+        {
+        }
 
-        bool StoreFolder(XInventoryFolder folder);
+        public XInventoryFolder[] GetFolders(string[] fields, string[] vals)
+        {
+            return new XInventoryFolder[0];
+        }
 
-        bool StoreItem(XInventoryItem item);
+        public XInventoryItem[] GetItems(string[] fields, string[] vals)
+        {
+            return new XInventoryItem[0];
+        }
+
+        public bool StoreFolder(XInventoryFolder folder)
+        {
+            return true;
+        }
+
+        public bool StoreItem(XInventoryItem item)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Delete folders where field == val
@@ -89,7 +82,10 @@ namespace OpenSim.Data
         /// <param name="field"></param>
         /// <param name="val"></param>
         /// <returns>true if the delete was successful, false if it was not</returns>
-        bool DeleteFolders(string field, string val);
+        public bool DeleteFolders(string field, string val)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Delete folders where field1 == val1, field2 == val2...
@@ -97,7 +93,10 @@ namespace OpenSim.Data
         /// <param name="fields"></param>
         /// <param name="vals"></param>
         /// <returns>true if the delete was successful, false if it was not</returns>
-        bool DeleteFolders(string[] fields, string[] vals);
+        public bool DeleteFolders(string[] fields, string[] vals)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Delete items where field == val
@@ -105,7 +104,10 @@ namespace OpenSim.Data
         /// <param name="field"></param>
         /// <param name="val"></param>
         /// <returns>true if the delete was successful, false if it was not</returns>
-        bool DeleteItems(string field, string val);
+        public bool DeleteItems(string field, string val)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Delete items where field1 == val1, field2 == val2...
@@ -113,7 +115,10 @@ namespace OpenSim.Data
         /// <param name="fields"></param>
         /// <param name="vals"></param>
         /// <returns>true if the delete was successful, false if it was not</returns>
-        bool DeleteItems(string[] fields, string[] vals);
+        public bool DeleteItems(string[] fields, string[] vals)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Move an item to another folder.
@@ -121,7 +126,10 @@ namespace OpenSim.Data
         /// <returns>/returns>
         /// <param name='id'>UUID of the item</param>
         /// <param name='newParent'>UUID of the new parent folder.</param>
-        bool MoveItem(string id, string newParentFolderID);
+        public bool MoveItem(string id, string newParentFolderID)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Move a folder to another folder.
@@ -129,8 +137,14 @@ namespace OpenSim.Data
         /// <returns>/returns>
         /// <param name='id'>UUID of the item</param>
         /// <param name='newParent'>UUID of the new parent folder.</param>
-        bool MoveFolder(string id, string newParentFolderID);
+        public bool MoveFolder(string id, string newParentFolderID)
+        {
+            return true;
+        }
 
-        XInventoryItem[] GetActiveGestures(UUID principalID);
+        public XInventoryItem[] GetActiveGestures(UUID principalID)
+        {
+            return new XInventoryItem[0];
+        }
     }
 }
