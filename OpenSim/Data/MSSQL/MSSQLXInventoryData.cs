@@ -108,11 +108,6 @@ namespace OpenSim.Data.MSSQL
         {
             return m_Items.GetActiveGestures(principalID);
         }
-
-        public int GetAssetPermissions(UUID principalID, UUID assetID)
-        {
-            return m_Items.GetAssetPermissions(principalID, assetID);
-        }
     }
 
     public class MSSQLItemHandler : MSSQLInventoryHandler<XInventoryItem>
@@ -164,32 +159,6 @@ namespace OpenSim.Data.MSSQL
                     cmd.Connection = conn;
                     conn.Open();
                     return DoQuery(cmd);
-                }
-            }
-        }
-
-        public int GetAssetPermissions(UUID principalID, UUID assetID)
-        {
-            using (SqlConnection conn = new SqlConnection(m_ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.CommandText = String.Format("select bit_or(inventoryCurrentPermissions) as inventoryCurrentPermissions from inventoryitems where avatarID = @PrincipalID and assetID = @AssetID group by assetID", m_Realm);
-                    cmd.Parameters.Add(m_database.CreateParameter("@PrincipalID", principalID.ToString()));
-                    cmd.Parameters.Add(m_database.CreateParameter("@AssetID", assetID.ToString()));
-                    cmd.Connection = conn;
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        int perms = 0;
-
-                        if (reader.Read())
-                        {
-                            perms = Convert.ToInt32(reader["inventoryCurrentPermissions"]);
-                        }
-
-                        return perms;
-                    }
                 }
             }
         }
