@@ -1,4 +1,4 @@
-using OpenSim.Region.OptionalModules.Scripting;
+using OpenSim.Region.CoreModules.Scripting;
 
 /*
  * Copyright (c) Contributors, http://opensimulator.org/
