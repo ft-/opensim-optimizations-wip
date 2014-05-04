@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OpenSim.Region.OptionalModules.World.SampleMoneyModule")]
+[assembly: AssemblyTitle("OpenSim.Region.SampleMoneyModule")]
 [assembly: AssemblyDescription("Sample Money Module for OpenSim")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OpenSim.Region.OptionalModules.World.SampleMoneyModule.Properties")]
+[assembly: AssemblyProduct("OpenSim.Region.SampleMoneyModule.Properties")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 [assembly: AssemblyVersion("0.8.0.*")]
-[assembly: Addin("OpenSim.Region.OptionalModules.World.SampleMoneyModule", "0.1")]
+[assembly: Addin("OpenSim.Region.SampleMoneyModule", "0.1")]
 [assembly: AddinDependency("OpenSim", "0.5")]
