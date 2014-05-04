@@ -493,7 +493,7 @@ namespace OpenSim.Region.Physics.BulletSPlugin
 
             if (ret == null)
             {
-                m_log.ErrorFormat("{0) COULD NOT SELECT BULLET ENGINE: '[BulletSim]PhysicsEngine' must be either 'BulletUnmanaged-*' or 'BulletXNA-*'", LogHeader);
+                m_log.ErrorFormat("{0) COULD NOT SELECT BULLET ENGINE: '[BulletSim]PhysicsEngine' must be either 'BulletUnmanaged-*'", LogHeader);
             }
             else
             {
