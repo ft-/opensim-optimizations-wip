@@ -395,6 +395,10 @@ namespace OpenSim.Region.ScriptEngine.Shared.Instance
                                 m_SaveState = false;
                             }
                         }
+                        catch(EventAbortException e)
+                        {
+
+                        }
                         catch (Exception e)
                         {
                             //                            m_log.DebugFormat(
