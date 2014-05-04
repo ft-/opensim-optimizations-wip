@@ -48,6 +48,7 @@ namespace OpenSim.Region.CoreModules.Framework.InventoryAccess
         protected bool m_Enabled = false;
         protected Scene m_Scene;
         protected IUserManagement m_UserManagement;
+        private string m_ThisGatekeeper = "";
         private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public bool CoalesceMultipleObjectsToInventory { get; set; }
@@ -105,6 +106,14 @@ namespace OpenSim.Region.CoreModules.Framework.InventoryAccess
 
                     m_log.InfoFormat("[INVENTORY ACCESS MODULE]: {0} enabled.", Name);
                 }
+            }
+            IConfig hgModuleConfig = source.Configs["HGInventoryAccessModule"];
+            if (hgModuleConfig != null)
+            {
+                m_ThisGatekeeper = Util.GetConfigVarFromSections<string>(source, "GatekeeperURI",
+                    new string[] { "Startup", "Hypergrid", "HGInventoryAccessModule" }, String.Empty);
+                // Legacy. Remove soon!
+                m_ThisGatekeeper = hgModuleConfig.GetString("Gatekeeper", m_ThisGatekeeper);
             }
         }
 
@@ -960,13 +969,31 @@ namespace OpenSim.Region.CoreModules.Framework.InventoryAccess
 
         protected virtual string GenerateLandmark(ScenePresence presence, out string prefix, out string suffix)
         {
-            prefix = string.Empty;
-            suffix = string.Empty;
-            Vector3 pos = presence.AbsolutePosition;
-            return String.Format("Landmark version 2\nregion_id {0}\nlocal_pos {1} {2} {3}\nregion_handle {4}\n",
-                                presence.Scene.RegionInfo.RegionID,
-                                pos.X, pos.Y, pos.Z,
-                                presence.RegionHandle);
+            if (m_ThisGatekeeper != String.Empty)
+            {
+                if (UserManagementModule != null && !UserManagementModule.IsLocalGridUser(presence.UUID))
+                    prefix = "HG ";
+                else
+                    prefix = string.Empty;
+                suffix = " @ " + m_ThisGatekeeper;
+                Vector3 pos = presence.AbsolutePosition;
+                return String.Format("Landmark version 2\nregion_id {0}\nlocal_pos {1} {2} {3}\nregion_handle {4}\ngatekeeper {5}\n",
+                                    presence.Scene.RegionInfo.RegionID,
+                                    pos.X, pos.Y, pos.Z,
+                                    presence.RegionHandle,
+                                    m_ThisGatekeeper);
+            }
+            else
+            {
+                prefix = string.Empty;
+                suffix = string.Empty;
+                Vector3 pos = presence.AbsolutePosition;
+
+                return String.Format("Landmark version 2\nregion_id {0}\nlocal_pos {1} {2} {3}\nregion_handle {4}\n",
+                                    presence.Scene.RegionInfo.RegionID,
+                                    pos.X, pos.Y, pos.Z,
+                                    presence.RegionHandle);
+            }
         }
 
         /// <summary>
