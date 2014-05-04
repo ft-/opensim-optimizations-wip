@@ -141,7 +141,6 @@ namespace OpenSim.Services.Interfaces
         void LogoutAgent(UUID userID, UUID sessionID);
 
         // Returns the local friends online
-        [Obsolete]
         List<UUID> StatusNotification(List<string> friends, UUID userID, bool online);
 
         bool VerifyAgent(UUID sessionID, string token);
