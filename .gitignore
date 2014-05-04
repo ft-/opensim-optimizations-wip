@@ -35,6 +35,8 @@ bin/*.db
 bin/*.db-journal
 bin/addin-db-*
 bin/*.dll
+bin/*.exe
+bin/*.pdb
 bin/OpenSim.vshost.exe.config
 bin/OpenSim.32BitLaunch.vshost.exe.config
 bin/OpenSim.32BitLaunch.log
