@@ -20023,8 +20023,13 @@ namespace OpenSim.Region.ScriptEngine.Shared.CodeTools
                 case 946: { ((LSLTokens)yym).str += yytext; }
                     break;
 
-                case 1010: { yym.yy_begin("YYINITIAL"); ((LSLTokens)yym).yytext = ((LSLTokens)yym).str; ((LSLTokens)yym).str = String.Empty; return new STRING_CONSTANT(yym); }
-                    break;
+                case 1010: 
+                    { 
+                        yym.yy_begin("YYINITIAL"); 
+                        ((LSLTokens)yym).yytext = ((LSLTokens)yym).str; 
+                        ((LSLTokens)yym).str = String.Empty; 
+                        return new STRING_CONSTANT(yym); 
+                    }
 
                 case 1015: { yym.yy_begin("COMMENT"); }
                     break;
