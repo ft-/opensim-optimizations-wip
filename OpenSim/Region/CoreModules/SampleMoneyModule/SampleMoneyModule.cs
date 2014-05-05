@@ -42,7 +42,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Reflection;
 
-namespace OpenSim.Region.OptionalModules.World.MoneyModule
+namespace OpenSim.Region.CoreModules.SampleMoneyModule
 {
     /// <summary>
     /// This is only the functionality required to make the functionality associated with money work
