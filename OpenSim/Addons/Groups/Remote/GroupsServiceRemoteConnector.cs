@@ -40,12 +40,15 @@ namespace OpenSim.Groups
 
         private string m_ServerURI;
 
-        public GroupsServiceRemoteConnector(string url)
+        private string m_SecretKey;
+
+        public GroupsServiceRemoteConnector(string url, string secret)
         {
             m_ServerURI = url;
             if (!m_ServerURI.EndsWith("/"))
                 m_ServerURI += "/";
 
+            m_SecretKey = secret;
             m_log.DebugFormat("[Groups.RemoteConnector]: Groups server at {0}", m_ServerURI);
         }
 
@@ -646,6 +649,10 @@ namespace OpenSim.Groups
         private Dictionary<string, object> MakeRequest(string method, Dictionary<string, object> sendData)
         {
             sendData["METHOD"] = method;
+            if(m_SecretKey != string.Empty)
+            {
+                sendData["KEY"] = m_SecretKey;
+            }
 
             string reply = string.Empty;
             reply = SynchronousRestFormsRequester.MakeRequest("POST",

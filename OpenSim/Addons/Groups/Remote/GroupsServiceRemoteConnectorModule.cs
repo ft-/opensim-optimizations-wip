@@ -70,8 +70,10 @@ namespace OpenSim.Groups
             string url = groupsConfig.GetString("GroupsServerURI", string.Empty);
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 throw new Exception(string.Format("[Groups.RemoteConnector]: Malformed groups server URL {0}. Fix it or disable the Groups feature.", url));
+            
+            string secret = groupsConfig.GetString("SecretKey", string.Empty);
+            m_GroupsService = new GroupsServiceRemoteConnector(url, secret);
 
-            m_GroupsService = new GroupsServiceRemoteConnector(url);
             m_Scenes = new List<Scene>();
         }
 
