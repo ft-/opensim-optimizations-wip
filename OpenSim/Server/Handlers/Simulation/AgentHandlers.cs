@@ -538,7 +538,9 @@ namespace OpenSim.Server.Handlers.Simulation
             keysvals.Add("querystringkeys", querystringkeys);
 
             Stream inputStream = request;
-            if ((httpRequest.Headers["Content-Encoding"] == "gzip") || (httpRequest.Headers["X-Content-Encoding"] == "gzip"))
+            if ((httpRequest.Headers["Content-Encoding"] == "gzip") || 
+                (httpRequest.Headers["X-Content-Encoding"] == "gzip") ||
+                (httpRequest.ContentType == "application/x-gzip"))
                 inputStream = new GZipStream(inputStream, CompressionMode.Decompress);
 
             Encoding encoding = Encoding.UTF8;
