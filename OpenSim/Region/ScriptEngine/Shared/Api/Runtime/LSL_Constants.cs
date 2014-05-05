@@ -78,6 +78,8 @@ namespace OpenSim.Region.ScriptEngine.Shared.ScriptBase
 
         public const int ANIM_ON = 1;
 
+        public const int ATTACH_AVATAR_CENTER = 40;
+
         public const int ATTACH_BACK = 9;
 
         public const int ATTACH_BELLY = 28;
@@ -129,6 +131,8 @@ namespace OpenSim.Region.ScriptEngine.Shared.ScriptBase
         public const int ATTACH_LULEG = 26;
 
         public const int ATTACH_MOUTH = 11;
+
+        public const int ATTACH_NECK = 39;
 
         public const int ATTACH_NOSE = 17;
 
