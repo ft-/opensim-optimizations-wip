@@ -36,7 +36,6 @@ using System.Reflection;
 
 namespace OpenSim.Server.Handlers.Hypergrid
 {
-    [Obsolete]
     public class HeloServerGetHandler : BaseStreamHandler
     {
         private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
